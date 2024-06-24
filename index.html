@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+</head>
+<body>
+    <h1>Carbon Footprint Calculator</h1>
+    <form id="footprint-form">
+        <label for="carMileage">Car Mileage (km/week):</label>
+        <input type="number" id="carMileage" name="carMileage"><br>
+
+        <label for="electricity">Electricity Usage (kWh/month):</label>
+        <input type="number" id="electricity" name="electricity"><br>
+
+        <label for="heating">Heating Usage (kWh/month):</label>
+        <input type="number" id="heating" name="heating"><br>
+
+        <label for="gasConsumption">Gas Consumption (m³/month):</label>
+        <input type="number" id="gasConsumption" name="gasConsumption"><br>
+
+        <label for="waste">Waste Generated (kg/week):</label>
+        <input type="number" id="waste" name="waste"><br>
+
+        <label for="water">Water Usage (liters/day):</label>
+        <input type="number" id="water" name="water"><br>
+
+        <button type="button" onclick="submitForm()">Calculate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function submitForm() {
+            const form = document.getElementById('footprint-form');
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            fetch('https://your-python-backend-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                document.getElementById('result').innerText = `
+                    Total Carbon Footprint: ${result.totalFootprint} tons/year
+                    ${result.message}
+                    Suggestions: ${result.suggestions}
+                `;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
