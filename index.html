@@ -4,32 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Footprint Calculator</title>
+    <style>
+        /* Add some basic styling to make the page look more professional */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ddd; /* Light gray border */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some depth */
+        }
+        
+        .header {
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text */
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc; /* Light gray border */
+        }
+        
+        .form-control:focus {
+            border-color: #aaa; /* Darker gray border on focus */
+        }
+        
+        .btn {
+            background-color: #4CAF50; /* Green background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #3e8e41; /* Darker green background on hover */
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f7f7f7; /* Light gray background */
+            border: 1px solid #ddd; /* Light gray border */
+        }
+    </style>
 </head>
 <body>
-    <h1>Carbon Footprint Calculator</h1>
-    <form id="footprint-form">
-        <label for="carMileage">Car Mileage (km/week):</label>
-        <input type="number" id="carMileage" name="carMileage"><br>
-
-        <label for="electricity">Electricity Usage (kWh/month):</label>
-        <input type="number" id="electricity" name="electricity"><br>
-
-        <label for="heating">Heating Usage (kWh/month):</label>
-        <input type="number" id="heating" name="heating"><br>
-
-        <label for="gasConsumption">Gas Consumption (m³/month):</label>
-        <input type="number" id="gasConsumption" name="gasConsumption"><br>
-
-        <label for="waste">Waste Generated (kg/week):</label>
-        <input type="number" id="waste" name="waste"><br>
-
-        <label for="water">Water Usage (liters/day):</label>
-        <input type="number" id="water" name="water"><br>
-
-        <button type="button" onclick="submitForm()">Calculate</button>
-    </form>
-
-    <div id="result"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Carbon Footprint Calculator</h1>
+        </div>
+        <form id="footprint-form">
+            <div class="form-group">
+                <label for="car-mileage">Car Mileage (km/week):</label>
+                <input type="number" id="car-mileage" class="form-control" value="1">
+            </div>
+            <div class="form-group">
+                <label for="electricity-usage">Electricity Usage (kWh/month):</label>
+                <input type="number" id="electricity-usage" class="form-control" value="1">
+            </div>
+            <div class="form-group">
+                <label for="heating-usage">Heating Usage (kWh/month):</label>
+                <input type="number" id="heating-usage" class="form-control" value="1">
+            </div>
+            <div class="form-group">
+                <label for="gas-consumption">Gas Consumption (m³/month):</label>
+                <input type="number" id="gas-consumption" class="form-control" value="11">
+            </div>
+            <div class="form-group">
+                <label for="waste-generated">Waste Generated (kg/week):</label>
+                <input type="number" id="waste-generated" class="form-control" value="1">
+            </div>
+            <div class="form-group">
+                <label for="water-usage">Water Usage (liters/day):</label>
+                <input type="number" id="water-usage" class="form-control" value="1">
+            </div>
+            <button class="btn" type="submit">Calculate</button>
+        </form>
+        <div id="result" class="result">
+            <!-- Result will be displayed here -->
+        </div>
+    </div>
 
     <script>
         function submitForm() {
