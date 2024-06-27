@@ -101,20 +101,43 @@
       let message;
       let suggestions;
 
-      if (totalFootprint <= 5) {
-        message = "Your carbon footprint is low. Great job! You are making a positive impact on the environment.";
-        suggestions = "Keep up the good work! Consider additional ways to reduce your footprint, such as using renewable energy sources, and continue with your sustainable practices.";
-      } else if (totalFootprint <= 8) {
-        message = "Your carbon footprint is moderate. There's room for improvement.";
-        suggestions = "You can reduce your carbon footprint by using public transportation, carpooling, and reducing energy consumption at home. Consider making your home more energy-efficient by insulating or using energy-efficient appliances.";
-      } else if (totalFootprint <= 15) {
-        message = "Your carbon footprint is high. It's important to take steps to reduce it.";
-        suggestions = "Consider significant changes such as reducing air travel, opting for a more plant-based diet, and investing in energy-efficient solutions for your home and transportation.";
-      } else {
-        message = "Your carbon footprint is very high. Immediate action is needed to reduce it.";
-        suggestions = "Look into major lifestyle changes such as reducing car use, significantly cutting down on energy consumption, and switching to renewable energy sources. Consider consulting with a sustainability expert for personalized advice.";
-      }
-
+  if (totalFootprint <= 5) {
+    message = "Your carbon footprint is low. Great job! You are making a positive impact on the environment.";
+    suggestions = `
+      - Switch to Renewable Energy: Explore rooftop solar panels or community solar programs which can reduce electricity bills and carbon footprint.<br>
+      - Energy Efficiency: Use LED bulbs, energy-efficient appliances, and proper insulation in your apartment to save energy and reduce costs.<br>
+      - Sustainable Transport: Use public transport like metro or buses and consider electric scooters or bicycles for short commutes.<br>
+      - Waste Reduction: Segregate waste at home, compost organic waste, and minimize use of single-use plastics.<br>
+      - Support Local Brands: Buy from local markets and brands that follow sustainable practices to reduce your carbon footprint.
+    `;
+  } else if (totalFootprint <= 8) {
+    message = "Your carbon footprint is moderate. There's room for improvement.";
+    suggestions = `
+      - Public Transportation: Utilize metro and bus services more often and use ride-sharing apps for longer commutes to reduce car usage.<br>
+      - Energy Saving: Turn off appliances when not in use, use a programmable thermostat, and ensure your home is well-insulated.<br>
+      - Dietary Changes: Reduce meat consumption, especially red meat, and incorporate more seasonal and locally grown fruits and vegetables into your diet.<br>
+      - Water Conservation: Use water-efficient fixtures, fix leaks promptly, and avoid running taps unnecessarily.<br>
+      - Local Produce: Buy fruits, vegetables, and other products from local markets to reduce the carbon footprint associated with transportation.
+    `;
+  } else if (totalFootprint <= 15) {
+    message = "Your carbon footprint is high. It's important to take steps to reduce it.";
+    suggestions = `
+      - Reduce Air Travel: Limit air travel where possible and opt for virtual meetings instead. For necessary trips, choose airlines with better environmental practices.<br>
+      - Upgrade Home Efficiency: Invest in energy-efficient windows, heating, and cooling systems, and consider adding solar panels if feasible.<br>
+      - Sustainable Diet: Increase your intake of plant-based meals, reduce food wastage by planning your meals and store food properly.<br>
+      - Minimize Car Use: Use public transportation, carpool, or ride-sharing services and consider switching to an electric or hybrid vehicle.<br>
+      - Eco-Friendly Habits: Practice recycling, composting, and minimizing single-use plastics. Support businesses that follow sustainable practices.
+    `;
+  } else {
+    message = "Your carbon footprint is very high. Immediate action is needed to reduce it.";
+    suggestions = `
+      - Major Lifestyle Changes: Significantly reduce car use by opting for public transportation, biking, or walking whenever possible. Switch to electric vehicles if you can.<br>
+      - Renewable Energy Investment: Invest in solar panels for your home and switch to energy-efficient appliances to reduce energy consumption.<br>
+      - Significant Dietary Shifts: Adopt a predominantly plant-based diet and reduce consumption of processed foods.<br>
+      - Reduce Consumption: Cut down on buying non-essential goods, focus on quality over quantity, and prefer sustainable brands.<br>
+      - Advocate and Educate: Get involved in community initiatives promoting sustainability and spread awareness about the importance of reducing carbon footprints among friends and family.
+    `;
+  }
       document.getElementById('results').innerHTML = `
         <h2>Results</h2>
         <p>Total Carbon Footprint: ${totalFootprint.toFixed(2)} tons/year</p>
