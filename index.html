@@ -1,135 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Footprint Calculator</title>
-    <style>
-        /* Add some basic styling to make the page look more professional */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9; /* Light gray background */
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #fff; /* White background */
-            border: 1px solid #ddd; /* Light gray border */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some depth */
-        }
-        
-        .header {
-            background-color: #333; /* Dark gray background */
-            color: #fff; /* White text */
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            margin: 0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc; /* Light gray border */
-        }
-        
-        .form-control:focus {
-            border-color: #aaa; /* Darker gray border on focus */
-        }
-        
-        .btn {
-            background-color: #4CAF50; /* Green background */
-            color: #fff; /* White text */
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #3e8e41; /* Darker green background on hover */
-        }
-        
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f7f7f7; /* Light gray background */
-            border: 1px solid #ddd; /* Light gray border */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input, select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+    #results {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Carbon Footprint Calculator</h1>
-        </div>
-        <form id="footprint-form">
-            <div class="form-group">
-                <label for="car-mileage">Car Mileage (km/week):</label>
-                <input type="number" id="car-mileage" class="form-control" value="1">
-            </div>
-            <div class="form-group">
-                <label for="electricity-usage">Electricity Usage (kWh/month):</label>
-                <input type="number" id="electricity-usage" class="form-control" value="1">
-            </div>
-            <div class="form-group">
-                <label for="heating-usage">Heating Usage (kWh/month):</label>
-                <input type="number" id="heating-usage" class="form-control" value="1">
-            </div>
-            <div class="form-group">
-                <label for="gas-consumption">Gas Consumption (m³/month):</label>
-                <input type="number" id="gas-consumption" class="form-control" value="11">
-            </div>
-            <div class="form-group">
-                <label for="waste-generated">Waste Generated (kg/week):</label>
-                <input type="number" id="waste-generated" class="form-control" value="1">
-            </div>
-            <div class="form-group">
-                <label for="water-usage">Water Usage (liters/day):</label>
-                <input type="number" id="water-usage" class="form-control" value="1">
-            </div>
-            <button class="btn" type="submit">Calculate</button>
-        </form>
-        <div id="result" class="result">
-            <!-- Result will be displayed here -->
-        </div>
-    </div>
+  <h1>Carbon Footprint Calculator</h1>
+  <form id="carbon-footprint-form" action="https://formspree.io/f/your-form-id" method="POST">
+    <label for="carMileage">Car Mileage (km/week):</label>
+    <input type="number" id="carMileage" name="carMileage" required>
 
-    <script>
-        function submitForm() {
-            const form = document.getElementById('footprint-form');
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => data[key] = value);
+    <label for="electricity">Electricity Consumption (kWh/month):</label>
+    <input type="number" id="electricity" name="electricity" required>
 
-            fetch('https://studykcet3.carbon-footprint-backend.repl.co', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(result => {
-                document.getElementById('result').innerText = `
-                    Total Carbon Footprint: ${result.totalFootprint} tons/year
-                    ${result.message}
-                    Suggestions: ${result.suggestions}
-                `;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    <label for="heating">Heating (kWh/month):</label>
+    <input type="number" id="heating" name="heating" required>
+
+    <label for="gasConsumption">Gas Consumption (m³/month):</label>
+    <input type="number" id="gasConsumption" name="gasConsumption" required>
+
+    <label for="waste">Waste (kg/week):</label>
+    <input type="number" id="waste" name="waste" required>
+
+    <label for="water">Water Consumption (liters/day):</label>
+    <input type="number" id="water" name="water" required>
+
+    <button type="submit">Calculate Carbon Footprint</button>
+  </form>
+  <div id="results"></div>
+
+  <script>
+    document.getElementById('carbon-footprint-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const carMileage = parseFloat(document.getElementById('carMileage').value);
+      const electricity = parseFloat(document.getElementById('electricity').value);
+      const heating = parseFloat(document.getElementById('heating').value);
+      const gasConsumption = parseFloat(document.getElementById('gasConsumption').value);
+      const waste = parseFloat(document.getElementById('waste').value);
+      const water = parseFloat(document.getElementById('water').value);
+
+      const carFactor = 0.12; // kg CO2 per km
+      const electricityFactor = 0.45; // kg CO2 per kWh
+      const gasFactor = 1.94; // kg CO2 per cubic meter of natural gas
+      const wasteFactor = 2.52; // kg CO2 per kg of waste
+      const waterFactor = 0.18; // kg CO2 per liter
+
+      const carFootprint = carMileage * carFactor * 52 / 1000; // annualize and convert to tons
+      const electricityFootprint = electricity * electricityFactor * 12 / 1000; // annualize and convert to tons
+      const heatingFootprint = heating * electricityFactor * 12 / 1000; // annualize and convert to tons
+      const gasFootprint = gasConsumption * gasFactor * 12 / 1000; // annualize and convert to tons
+      const wasteFootprint = waste * wasteFactor * 52 / 1000; // annualize and convert to tons
+      const waterFootprint = water * waterFactor * 365 / 1000; // annualize and convert to tons
+
+      const totalFootprint = carFootprint + electricityFootprint + heatingFootprint + gasFootprint + wasteFootprint + waterFootprint;
+
+      let message;
+      let suggestions;
+
+      if (totalFootprint <= 5) {
+        message = "Your carbon footprint is low. Great job! You are making a positive impact on the environment.";
+        suggestions = "Keep up the good work! Consider additional ways to reduce your footprint, such as using renewable energy sources, and continue with your sustainable practices.";
+      } else if (totalFootprint <= 8) {
+        message = "Your carbon footprint is moderate. There's room for improvement.";
+        suggestions = "You can reduce your carbon footprint by using public transportation, carpooling, and reducing energy consumption at home. Consider making your home more energy-efficient by insulating or using energy-efficient appliances.";
+      } else if (totalFootprint <= 15) {
+        message = "Your carbon footprint is high. It's important to take steps to reduce it.";
+        suggestions = "Consider significant changes such as reducing air travel, opting for a more plant-based diet, and investing in energy-efficient solutions for your home and transportation.";
+      } else {
+        message = "Your carbon footprint is very high. Immediate action is needed to reduce it.";
+        suggestions = "Look into major lifestyle changes such as reducing car use, significantly cutting down on energy consumption, and switching to renewable energy sources. Consider consulting with a sustainability expert for personalized advice.";
+      }
+
+      document.getElementById('results').innerHTML = `
+        <h2>Results</h2>
+        <p>Total Carbon Footprint: ${totalFootprint.toFixed(2)} tons/year</p>
+        <p>${message}</p>
+        <p>${suggestions}</p>
+      `;
+      document.getElementById('results').style.display = 'block';
+
+      // Send data to Formspree
+      const formData = new FormData(this);
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
         }
-    </script>
+      }).then(response => {
+        if (response.ok) {
+          this.reset();
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              alert(data["errors"].map(error => error["message"]).join(", "));
+            } else {
+              alert("Oops! There was a problem submitting your form");
+            }
+          });
+        }
+      }).catch(error => {
+        alert("Oops! There was a problem submitting your form");
+      });
+    });
+  </script>
 </body>
 </html>
+
