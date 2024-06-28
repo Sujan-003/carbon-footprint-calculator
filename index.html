@@ -9,6 +9,7 @@
     body {
       font-family: 'Open Sans', sans-serif;
       background-color: #f0f0f0; /* Light gray background */
+      padding: 20px;
     }
     h1 {
       font-family: 'Montserrat', sans-serif;
@@ -24,10 +25,12 @@
       border: 1px solid #ccc;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
     }
     label {
       display: block;
       margin-bottom: 10px;
+      font-weight: bold;
     }
     input, select {
       width: 100%;
@@ -35,6 +38,7 @@
       margin-bottom: 20px;
       padding: 10px;
       border: 1px solid #ccc;
+      border-radius: 5px;
     }
     button[type="submit"] {
       background-color: #4CAF50; /* Green color */
@@ -43,6 +47,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
     button[type="submit"]:hover {
       background-color: #3e8e41;
@@ -56,28 +61,29 @@
       font-family: 'Lato', sans-serif;
       font-size: 18px;
       margin-top: 20px;
+      display: none;
     }
   </style>
 </head>
 <body>
   <h1>Carbon Footprint Calculator</h1>
   <form id="carbon-footprint-form" action="https://formspree.io/f/xblrrewk" method="POST">
-    <label for="carMileage">Car Mileage (km/week):</label>
+    <label for="carMileage">Enter your weekly Car usage in Km (km/week):</label>
     <input type="number" id="carMileage" name="carMileage" required>
 
-    <label for="electricity">Electricity Consumption (kWh/month):</label>
+    <label for="electricity">Enter your monthly Electricity Consumption (kWh/month):</label>
     <input type="number" id="electricity" name="electricity" required>
 
-    <label for="heating">Heating (kWh/month):</label>
+    <label for="heating">Monthly electricity used for Heating (kWh/month):</label>
     <input type="number" id="heating" name="heating" required>
 
-    <label for="gasConsumption">Gas Consumption (m³/month):</label>
+    <label for="gasConsumption">Enter your montly Gas Consumption (m³/month):</label>
     <input type="number" id="gasConsumption" name="gasConsumption" required>
 
-    <label for="waste">Waste (kg/week):</label>
+    <label for="waste">Weekly Waste generation (kg/week):</label>
     <input type="number" id="waste" name="waste" required>
 
-    <label for="water">Water Consumption (liters/day):</label>
+    <label for="water">Water Consumption per Day (liters/day):</label>
     <input type="number" id="water" name="water" required>
 
     <button type="submit">Calculate Carbon Footprint</button>
@@ -114,7 +120,7 @@
       let suggestions;
 
   if (totalFootprint <= 5) {
-    message = "Your carbon footprint is low. Great job! You are making a positive impact on the environment.";
+    message = "Your carbon footprint is low. Great job! You are making a positive impact on the environment. Check if you can implement these too!";
     suggestions = `
       - Switch to Renewable Energy: Explore rooftop solar panels or community solar programs which can reduce electricity bills and carbon footprint.<br>
       - Energy Efficiency: Use LED bulbs, energy-efficient appliances, and proper insulation in your apartment to save energy and reduce costs.<br>
